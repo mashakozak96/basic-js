@@ -15,7 +15,7 @@ function getSeason(date) {
   if (date === undefined) {
     return 'Unable to determine the time of year!';
   }
-  if (!(date instanceof Date)) {
+  if (!(date instanceof Date) || Object.entries(date).length > 0) {
     throw new Error('Invalid date!');
   } 
   if (date.getMonth() === 0 || date.getMonth() === 1 || date.getMonth() === 11) {
