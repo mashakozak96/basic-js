@@ -23,9 +23,57 @@ const { NotImplementedError } = require('../lib');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  // Remove line below and write your code here
-  throw new NotImplementedError('Not implemented');
+function minesweeper(matrix) {
+  let arr = [];
+  for (let i = 0; i < matrix.length; i++) {    
+    let row = [];
+    for (let j = 0; j < matrix[i].length; j++) {
+      let res = [];
+      if (i - 1 >= 0 && j - 1 >=0) {
+        res.push(matrix[i - 1][j - 1]);
+      } else {
+        res.push(null)
+      }
+      if (i - 1 >= 0) {
+        res.push(matrix[i - 1][j]);
+      } else {
+        res.push(null)
+      }
+      if (i - 1 >= 0 && j + 1 < matrix[i].length) {
+        res.push(matrix[i - 1][j + 1]);
+      } else {
+        res.push(null);
+      }
+      if (j - 1 >= 0) {
+        res.push(matrix[i][j - 1]);
+      } else {
+        res.push(null);
+      }
+      if (j + 1 < matrix[i].length) {
+        res.push(matrix[i][j + 1]);
+      } else {
+        res.push(null);
+      }
+      if (i + 1 < matrix.length && j - 1 >= 0) {
+        res.push(matrix[i + 1][j - 1]);
+      } else {
+        res.push(null);
+      }
+      if (i + 1 < matrix.length) { 
+        res.push(matrix[i + 1][j]);
+      } else {
+        res.push(null);
+      }
+      if (i  + 1 < matrix.length && j + 1 < matrix[i].length) {
+        res.push(matrix[i + 1][j + 1]);
+      } else {
+        res.push(null);
+      }      
+      res = res.filter(elem => elem === true).length;
+      row.push(res);
+    } 
+    arr.push(row);
+  } return arr;
 }
 
 module.exports = {
